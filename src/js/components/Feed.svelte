@@ -1,0 +1,115 @@
+<script>
+  export let feed = [
+    {
+      author: "John Doe",
+      date: new Date(),
+      content: "Hello, world!",
+    },
+    {
+      author: "Jane Smith",
+      date: new Date(),
+      content: "Blah blah blah",
+    },
+    {
+      author: "Bob Johnson",
+      date: new Date(),
+      content: "Check out this cool post!",
+    },
+  ];
+
+  function formatDate(date) {
+    // Function to format the date
+    // Implement your own logic here
+  }
+</script>
+
+<div class="feed-container">
+  <!-- <div class="feed-overlay"></div> -->
+  {#each feed as post}
+    <div class="post-container">
+      <div class="post-header">
+        <h3>{post.author}</h3>
+        <p>{formatDate(post.date)}</p>
+      </div>
+      <div class="post-content">
+        <p>{post.content}</p>
+      </div>
+    </div>
+    <div class="post-footer" id="post-footer-button">
+      <button>Like</button>
+      <button>Comment</button>
+      <button>Share</button>
+    </div>
+  {/each}
+</div>
+
+<style>
+  .feed-container {
+    height: 100vh;
+  }
+
+  .post-container {
+    grid-column: span 6;
+    border: 5px solid #0056b3;
+    border-radius: 15px;
+    width: 75%;
+    padding: 1.5em;
+    margin: 1.5em 2em 0em 2em;
+    background-color: rgba(136, 132, 132, 0.5);
+  }
+
+  .post-container:hover {
+    background-color: rgba(136, 132, 132, 0.7);
+  }
+
+  .post-container p {
+    margin: 0.5em 0em 0em 0em;
+  }
+
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+  }
+
+  .post-content {
+    background-color: seashell;
+    border-radius: 7px;
+    padding: 1em;
+    margin-top: 0.5em;
+  }
+
+  #post-footer-button {
+    display: flexbox;
+    grid-column: 2;
+    width: 75%;
+    justify-content: space-between;
+    padding: 0.5em 0em 0em 0em;
+    margin-left: 2em;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5em;
+    margin-left: 3em;
+    width: 10em;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  @media (min-width: 708px) {
+    .post-container {
+      width: 90%;
+    }
+  }
+
+  /* your existing styles for post-header, post-content, post-footer, etc. */
+</style>
