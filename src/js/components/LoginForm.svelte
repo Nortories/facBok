@@ -32,7 +32,7 @@
     <button type="submit">Login</button>
     <button
       type="button"
-      on:click={() => (window.location.href = "/signup/index.html")}
+      on:click={() => (window.location.href = "/signup.html")}
     >
       Sign Up
     </button>

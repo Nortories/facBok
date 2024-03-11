@@ -1,5 +1,5 @@
 import { loginRequest } from "./externalServices.mjs";
-import {getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { jwtDecode } from "jwt-decode";
 
 const tokenKey = "so-token";
@@ -8,11 +8,10 @@ export async function login(creds, redirect = "/") {
   try {
     const token = await loginRequest(creds);
     setLocalStorage(tokenKey, token.accessToken);
-    if (isTokenValid(token.accessToken)){
-          // because of the default arg provided above...if no redirect is provided send them Home.
-    window.location = redirect;
+    if (isTokenValid(token.accessToken)) {
+      // because of the default arg provided above...if no redirect is provided send them Home.
+      window.location = redirect;
     }
-
   } catch (err) {
     alertMessage(err.message);
   }
@@ -58,6 +57,6 @@ export function checkLogin() {
     // check out what location contains
     console.log(location);
     // redirect by updating window.location =
-    window.location = `/login/index.html?redirect=${location.pathname}`;
+    window.location = `/login.html?redirect=${location.pathname}`;
   } else return token; //if they are logged in then just return the token.
 }

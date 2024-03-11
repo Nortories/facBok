@@ -8,7 +8,7 @@
   </div>
   <button
     on:click={() => {
-      window.location.href = "/login/index.html";
+      window.location.href = "/login.html";
     }}>Login</button
   >
 </div>
