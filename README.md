@@ -2,6 +2,8 @@
 
 ## Description
 
+[Facbok link](https://funny-facbok.netlify.app/)
+
 Group project of our social media site
 
 ## Prerequisites
