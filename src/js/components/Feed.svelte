@@ -7,7 +7,7 @@
     },
     {
       author: "Jane Smith",
-      date: new Date(),
+      date: new Date(2024, 0, 3, 0, 4, 0), //This date just makes sure that it's formatted correctly for midnight.
       content: "Blah blah blah",
     },
     {
@@ -20,6 +20,74 @@
   function formatDate(date) {
     // Function to format the date
     // Implement your own logic here
+
+    let month;
+    switch(date.getMonth()) {
+      case 0:
+        month = "January";
+        break;
+      case 1:
+        month = "February";
+        break;
+      case 2:
+        month = "March";
+        break;
+      case 3:
+        month = "April";
+        break;
+      case 4:
+        month = "May";
+        break;
+      case 5:
+        month = "June";
+        break;
+      case 6:
+        month = "July";
+        break;
+      case 7:
+        month = "August";
+        break;
+      case 8:
+        month = "September";
+        break;
+      case 9:
+        month = "October";
+        break;
+      case 10:
+        month = "November";
+        break;
+      case 11:
+        month = "December";
+        break;
+    }
+
+    let displayHours;
+    const twentyfourHours = date.getHours();
+
+    if (twentyfourHours == 0) {
+      displayHours = 12;
+    }
+    else if (twentyfourHours > 12) {
+      displayHours = twentyfourHours - 12;
+    }
+    else {
+      displayHours = twentyfourHours;
+    }
+
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    let timeSuffix;
+    if (twentyfourHours < 12) {
+      timeSuffix = "am";
+    }
+    else {
+      timeSuffix = "pm";
+    }
+
+    return `${month} ${date.getDate()}, ${date.getFullYear()}, ${displayHours}:${minutes}${timeSuffix}`;
   }
 </script>
 
