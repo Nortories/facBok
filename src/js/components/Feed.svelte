@@ -111,7 +111,6 @@
     <div class="post-footer" id="post-footer-button">
       <button>Like</button>
       <button>Comment</button>
-      <button>Share</button>
     </div>
   {/each}
 </div>
