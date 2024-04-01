@@ -1,16 +1,34 @@
 <script>
   import { getParam } from "../utils.mjs";
+  import { onMount } from "svelte";
+  import ProfileButton from "./profileButton.svelte";
+  import { isAuthenticated, user, popupOpen } from "../store";
+  import auth from "../authService.mjs";
+
+  let auth0Client;
+
+  onMount(async () => {
+    auth0Client = await auth.createClient();
+
+    isAuthenticated.set(await auth0Client.isAuthenticated());
+    user.set(await auth0Client.getUser());
+  });
+
+  function login() {
+    auth.loginWithPopup(auth0Client);
+  }
 </script>
 
 <div class="container">
   <div class="logo">
     <a href="/index.html"> Fac<span class="highlight">Bok</span></a>
   </div>
-  <button
-    on:click={() => {
-      window.location.href = "/login.html";
-    }}>Login</button
-  >
+  {#if $isAuthenticated}
+    <ProfileButton />
+  {:else}
+    <button on:click={login}>Login</button>
+  {/if}
+  <div class="spacing-300"></div>
 </div>
 
 <style>
@@ -48,5 +66,8 @@
   /* utility classes */
   .highlight {
     color: var(--tertiary-color);
+  }
+  .spacing-300 {
+    margin-left: -300px;
   }
 </style>
