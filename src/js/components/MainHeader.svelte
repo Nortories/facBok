@@ -14,8 +14,10 @@
     user.set(await auth0Client.getUser());
   });
 
-  async function login() {
+  function login() {
     auth.loginWithPopup(auth0Client);
+  }
+  async function getuserdata() {
     console.log(await auth0Client.getUser());
   }
 </script>
@@ -26,6 +28,7 @@
   </div>
   {#if $isAuthenticated}
     <ProfileButton />
+    <button on:click={getuserdata}>Get User Data</button>
   {:else}
     <button on:click={login}>Login</button>
   {/if}
