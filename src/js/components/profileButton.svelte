@@ -110,8 +110,10 @@
 
   <div class="dropdown" data-dropdown="">
     <a class="dropdown-button" data-dropdown-button="" href="#">
-      <img class="userPic" src={$user.picture} alt="Profile Picture" />
-    </a>
+      <span
+        ><img class="userPic" src={$user.picture} alt="Profile Picture" />
+      </span></a
+    >
 
     <ul class="dropdown-list" data-dropdown-list="">
       <div class="arrow"></div>
