@@ -31,7 +31,8 @@
   </div>
   {#if $isAuthenticated}
     <ProfileButton />
-    <button on:click={getuserdata}>Get User Data</button>
+    <!-- Debugging button ↓↓↓ used to check auth0Client.getUser() -->
+    <!-- <button on:click={getuserdata}>Get User Data</button> -->
   {:else}
     <button on:click={login}>Login</button>
   {/if}
