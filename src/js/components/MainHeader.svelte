@@ -14,8 +14,9 @@
     user.set(await auth0Client.getUser());
   });
 
-  function login() {
+  async function login() {
     auth.loginWithPopup(auth0Client);
+    console.log(await auth0Client.getUser());
   }
 </script>
 
