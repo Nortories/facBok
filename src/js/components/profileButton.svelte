@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import auth from "../authService.mjs";
-  import { isAuthenticated, user, popupOpen } from "../store";
+  import { isAuthenticated, user } from "../store";
 
   let auth0Client;
 
@@ -87,6 +87,7 @@
       }
     });
   });
+
   onMount(async () => {
     // create an Auth0 client
     auth0Client = await auth.createClient();
@@ -103,7 +104,9 @@
     auth.logout(auth0Client);
   }
 
-  export let name = "Billy Bob";
+  let name = user.subscribe((value) => {
+    return value.name;
+  });
 </script>
 
 <div class="center">
