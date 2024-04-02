@@ -4,6 +4,7 @@
   import { isAuthenticated, user } from "../store";
 
   let auth0Client;
+  let idImg = user.picture || "/img/default-headshot.png";
 
   onMount(() => {
     const dropdownElements = document.querySelectorAll("[data-dropdown]");
@@ -171,7 +172,7 @@
     height: 50px;
     border-radius: 50%;
     background-color: #007bff;
-    background-image: url("/img/default-headshot.png");
+    background-image: url({idImg});
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
