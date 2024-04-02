@@ -1,9 +1,14 @@
-<form id="new-post" action="" method="post">
-    <label for="new-post-content"><b>So what's up?</b></label>
-    <textarea name="new-post-content" id="new-post-content" required></textarea>
-    <input type="submit" class="new-post-btn" value="Create New Post">
-</form>
-
+<script>
+import { isAuthenticated } from "../store.js";
+</script>
+{#if $isAuthenticated}
+    <!-- ↑↑↑↑↑↑ only show posts if logged in -->
+    <form id="new-post" action="" method="post">
+        <label for="new-post-content"><b>So what's up?</b></label>
+        <textarea name="new-post-content" id="new-post-content" required></textarea>
+        <input type="submit" class="new-post-btn" value="Create New Post">
+    </form>
+{/if}
 <style>
     #new-post {
     border: 3px solid #0056b3;

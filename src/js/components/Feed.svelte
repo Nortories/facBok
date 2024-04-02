@@ -100,15 +100,9 @@
 
 <div class="feed-container">
 
-  <!-- RETURN HERE -->
   {#if $isAuthenticated}
     <!-- ↑↑↑↑↑↑ only show posts if logged in -->
-    <form id="new-post" action="" method="post">
-      <label for="new-post-content"><b>So what's up?</b></label>
-      <textarea name="new-post-content" id="new-post-content" required
-      ></textarea>
-      <input type="submit" class="new-post-btn" value="Create New Post" />
-    </form>
+    
     <!-- <div class="feed-overlay"></div> -->
     {#each $posts as post}
       <div class="post-container">
@@ -120,7 +114,7 @@
           <p>{post.content}</p>
           <!-- ↑↑↑ I removed formatDate() from the above  line as it was broken: Josh.S April/1/2024 -->
         </div>
-        <!-- END HERE -->
+      
 
       </div>
       <div class="post-footer" id="post-footer-button">
