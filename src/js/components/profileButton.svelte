@@ -112,18 +112,10 @@
 </script>
 
 <div class="form-popup">
-  <button on:click={groupForm}>Create Group</button>
   {#if $newGroupForm}
     <div id="myform">
       <CreateGroup />
     </div>
-  {/if}
-</div>
-
-<div class="form-popup" id="myForm">
-  <button on:click={groupForm}>Create Group</button>
-  {#if $newGroupForm}
-    <CreateGroup />
   {/if}
 </div>
 
@@ -156,7 +148,7 @@
       <a href="#">Read for Free</a>
     </li> -->
       <li class="has-border">
-        <a class="list-button" on:click={newGroup}>Create new Group</a>
+        <a class="list-button" on:click={groupForm}>Create new Group</a>
       </li>
       <li class="has-border">
         <a class="list-button" on:click={logout}>Sign Out</a>
