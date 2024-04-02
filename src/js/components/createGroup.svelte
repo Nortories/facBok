@@ -1,5 +1,5 @@
 <script>
-  import { user } from "../store";
+  import { user, newGroupForm } from "../store";
 
   let groupName = "";
   let groupDescription = "";
@@ -23,6 +23,7 @@
       if (response.ok) {
         // Group created successfully
         console.log("Group created!");
+        newGroupForm.set(false);
       } else {
         // Error creating group
         console.error("Failed to create group");
