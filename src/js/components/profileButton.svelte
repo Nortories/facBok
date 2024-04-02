@@ -104,9 +104,7 @@
     auth.logout(auth0Client);
   }
 
-  let name = user.subscribe((value) => {
-    return value.name;
-  });
+  let name = user.subscribe();
 </script>
 
 <div class="center">
