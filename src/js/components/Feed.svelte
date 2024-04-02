@@ -9,24 +9,6 @@
     }
   });
 
-  let feed = [
-    {
-      author: "John Doe",
-      date: new Date(),
-      content: "Hello, world!",
-    },
-    {
-      author: "Jane Smith",
-      date: new Date(2024, 0, 3, 0, 4, 0), //This date just makes sure that it's formatted correctly for midnight.
-      content: "Blah blah blah",
-    },
-    {
-      author: "Bob Johnson",
-      date: new Date(),
-      content: "Check out this cool post!",
-    },
-  ];
-
   function formatDate(date) {
     // Function to format the date
     // Implement your own logic here
@@ -107,12 +89,11 @@
     {#each $posts as post}
       <div class="post-container">
         <div class="post-header">
-          <h3>{post._id}</h3>
-          <p>{post.createdAt}</p>
+          <h3>{post._id}</h3> <!--TODO: Replace this with first and last name of user-->
+          <p>{formatDate(new Date(post.createdAt))}</p>
         </div>
         <div class="post-content">
           <p>{post.content}</p>
-          <!-- ↑↑↑ I removed formatDate() from the above  line as it was broken: Josh.S April/1/2024 -->
         </div>
       
 
