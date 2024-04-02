@@ -1,4 +1,5 @@
 <script>
+    import { isAuthenticated } from "../store.js";
     function setupTabs () {
         document.querySelectorAll(".tabs-button").forEach(button => {
             button.addEventListener("click", () => {
@@ -21,13 +22,13 @@
     });
 
 </script>
-
+{#if $isAuthenticated}
 <div class="tabs-bar">
     <button class="tabs-button" data-for-tab="1">For You</button>
     <button class="tabs-button" data-for-tab="2">Group Posts</button>
     <button class="tabs-button" data-for-tab="3">My Posts</button>
 </div>
-
+{/if}
 <style>
     .tabs-bar {
         flex-shrink: 0;

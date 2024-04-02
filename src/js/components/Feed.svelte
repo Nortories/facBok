@@ -103,12 +103,7 @@
   <!-- RETURN HERE -->
   {#if $isAuthenticated}
     <!-- ↑↑↑↑↑↑ only show posts if logged in -->
-    <form id="new-post" action="" method="post">
-      <label for="new-post-content"><b>So what's up?</b></label>
-      <textarea name="new-post-content" id="new-post-content" required
-      ></textarea>
-      <input type="submit" class="new-post-btn" value="Create New Post" />
-    </form>
+    
     <!-- <div class="feed-overlay"></div> -->
     {#each $posts as post}
       <div class="post-container">
