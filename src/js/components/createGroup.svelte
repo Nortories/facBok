@@ -61,13 +61,13 @@
 
   input,
   textarea {
-    padding: 0.5rem;
+    padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
 
   button {
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem;
     background-color: #007bff;
     color: #fff;
     border: none;
