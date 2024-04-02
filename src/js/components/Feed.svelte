@@ -1,5 +1,15 @@
 <script>
-  export let feed = [
+  import { posts, isAuthenticated } from "../store.js";
+  import { fetchPosts } from "../externalServices.mjs";
+  import { onMount } from "svelte";
+
+  onMount(async () => {
+    if ($isAuthenticated) {
+      await fetchPosts();
+    }
+  });
+
+  let feed = [
     {
       author: "John Doe",
       date: new Date(),
@@ -22,7 +32,7 @@
     // Implement your own logic here
 
     let month;
-    switch(date.getMonth()) {
+    switch (date.getMonth()) {
       case 0:
         month = "January";
         break;
@@ -66,11 +76,9 @@
 
     if (twentyfourHours == 0) {
       displayHours = 12;
-    }
-    else if (twentyfourHours > 12) {
+    } else if (twentyfourHours > 12) {
       displayHours = twentyfourHours - 12;
-    }
-    else {
+    } else {
       displayHours = twentyfourHours;
     }
 
@@ -82,8 +90,7 @@
     let timeSuffix;
     if (twentyfourHours < 12) {
       timeSuffix = "am";
-    }
-    else {
+    } else {
       timeSuffix = "pm";
     }
 
@@ -95,17 +102,19 @@
   <form id="new-post" action="" method="post">
     <label for="new-post-content"><b>So what's up?</b></label>
     <textarea name="new-post-content" id="new-post-content" required></textarea>
-    <input type="submit" class="new-post-btn" value="Create New Post">
+    <input type="submit" class="new-post-btn" value="Create New Post" />
   </form>
   <!-- <div class="feed-overlay"></div> -->
-  {#each feed as post}
+  <!-- {#if $isAuthenticated} -->
+  {#each $posts as post}
     <div class="post-container">
       <div class="post-header">
-        <h3>{post.author}</h3>
-        <p>{formatDate(post.date)}</p>
+        <h3>{post._id}</h3>
+        <p>{post.createdAt}</p>
       </div>
       <div class="post-content">
         <p>{post.content}</p>
+        <!-- ↑↑↑ I removed formatDate() from the above  line as it was broken: Josh.S April/1/2024 -->
       </div>
     </div>
     <div class="post-footer" id="post-footer-button">
@@ -113,6 +122,7 @@
       <button>Comment</button>
     </div>
   {/each}
+  <!-- {/if} -->
 </div>
 
 <style>
@@ -204,7 +214,8 @@
     cursor: pointer;
   }
 
-  button:hover, .new-post-btn:hover {
+  button:hover,
+  .new-post-btn:hover {
     background-color: #0056b3;
   }
 
