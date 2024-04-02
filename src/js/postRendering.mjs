@@ -9,7 +9,7 @@ export async function fetchPosts(type) {
         posts.set(data);
         console.log("posts fetched");
         console.log(data);
-    } else if (type =="group") {
+    } else if (type == "group") {
         
         const response = await fetch("https://facebok-2q7r.onrender.com/posts/3");
         const data = await response.json();
