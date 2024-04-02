@@ -1,11 +1,14 @@
-<script>
-    import { isAuthenticated } from "../store.js";
+<script context="module">
+    import { isAuthenticated, user, newGroupForm } from "../store";
+    import { fetchPosts } from "../postRendering.mjs";
+
     function setupTabs () {
         document.querySelectorAll(".tabs-button").forEach(button => {
             button.addEventListener("click", () => {
                 const tabsBar = button.parentElement;
                 const tabNumber = button.dataset.forTab;
-
+                
+                fetchPosts(tabNumber);
                 console.log(tabNumber);
                 tabsBar.querySelectorAll(".tabs-button").forEach(button => {
                     button.classList.remove("tabs-button-active");
@@ -22,13 +25,13 @@
     });
 
 </script>
-{#if $isAuthenticated}
+<!-- {#if $isAuthenticated} giving errors - commented out for now-->
 <div class="tabs-bar">
-    <button class="tabs-button" data-for-tab="1">For You</button>
-    <button class="tabs-button" data-for-tab="2">Group Posts</button>
-    <button class="tabs-button" data-for-tab="3">My Posts</button>
+    <button class="tabs-button" data-for-tab="all">For You</button>
+    <button class="tabs-button" data-for-tab="group">Group Posts</button>
+    <button class="tabs-button" data-for-tab="mine">My Posts</button>
 </div>
-{/if}
+<!-- {/if} -->
 <style>
     .tabs-bar {
         flex-shrink: 0;
