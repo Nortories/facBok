@@ -112,7 +112,7 @@
     <a class="dropdown-button" data-dropdown-button="" href="#">
       <span
         ><img class="userPic" src={$user.picture} alt="Profile Picture" />
-      </span></a
+      </span>Profile</a
     >
 
     <ul class="dropdown-list" data-dropdown-list="">
@@ -180,6 +180,7 @@
   } */
   .userPic {
     border-radius: 50%;
+    box-shadow: #007bff 0 0 0 2px;
   }
 
   .dropdown-list {
