@@ -96,12 +96,16 @@
     user.set(await auth0Client.getUser());
   });
 
+  function logout() {
+    auth.logout(auth0Client);
+  }
+
   function handleDarkModeClick() {
     // Code to switch to dark mode goes here
   }
 
-  function logout() {
-    auth.logout(auth0Client);
+  function newGroup() {
+    // Code to create a new group goes here
   }
 </script>
 
@@ -117,10 +121,6 @@
 
     <ul class="dropdown-list" data-dropdown-list="">
       <div class="arrow"></div>
-      <li class="has-border close" data-dropdown-close="">
-        <span class="title">Profile Menu</span>
-        <a class="fa fa-close" href="#"></a>
-      </li>
       <li class="title has-border">Welcome {$user.name}!</li>
       <!-- <li class="has-border">
       <a href="#">Public Profile</a>
@@ -135,7 +135,7 @@
       <a href="#">Read for Free</a>
     </li> -->
       <li class="has-border">
-        <a class="list-button" href="#">Help</a>
+        <a class="list-button" on:click={newGroup}>Create new Group</a>
       </li>
       <li class="has-border">
         <a class="list-button" on:click={logout}>Sign Out</a>
@@ -160,10 +160,12 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    flex-direction: column;
   }
   .dropdown-button:hover {
     opacity: 0.8;
   }
+
   /* .dropdown-button::after {
     align-self: center;
     content: "";
