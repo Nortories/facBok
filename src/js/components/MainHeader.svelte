@@ -2,7 +2,7 @@
   import { getParam } from "../utils.mjs";
   import { onMount } from "svelte";
   import ProfileButton from "./profileButton.svelte";
-  import { isAuthenticated, user, popupOpen } from "../store";
+  import { isAuthenticated, user, popupOpen, newGroupForm } from "../store";
   import auth from "../authService.mjs";
 
   let auth0Client;
@@ -14,9 +14,14 @@
     user.set(await auth0Client.getUser());
   });
 
-  async function login() {
+  function login() {
     auth.loginWithPopup(auth0Client);
+  }
+  async function getuserdata() {
     console.log(await auth0Client.getUser());
+    let name = await auth0Client.getUser();
+    name = name.name;
+    console.log(name);
   }
 </script>
 
@@ -26,6 +31,8 @@
   </div>
   {#if $isAuthenticated}
     <ProfileButton />
+    <!-- Debugging buttonS ↓↓↓ used to check auth0Client.getUser() -->
+    <!-- <button on:click={getuserdata}>Get User Data</button> -->
   {:else}
     <button on:click={login}>Login</button>
   {/if}

@@ -5,6 +5,8 @@
 [Facbok link](https://funny-facbok.netlify.app/)
 
 Group project of our social media site
+This project is a social media web application named "FacBok". It's built using Svelte, a modern JavaScript framework, and Vite, a build tool and development server. The application uses Auth0 for authentication.
+This project was worked on by the front-end team, which consists of Joshua, Collin, and Austin. They utilized the backend team's API, using CRUD operations to update the page state
 
 ## Prerequisites
 

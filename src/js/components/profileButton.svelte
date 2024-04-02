@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import auth from "../authService.mjs";
-  import { isAuthenticated, user } from "../store";
+  import { isAuthenticated, user, newGroupForm } from "../store";
 
   let auth0Client;
 
@@ -96,32 +96,45 @@
     user.set(await auth0Client.getUser());
   });
 
-  function handleDarkModeClick() {
-    // Code to switch to dark mode goes here
-  }
-
   function logout() {
     auth.logout(auth0Client);
   }
 
-  $: name = user.name || "BillyBob";
+  function handleDarkModeClick() {
+    // Code to switch to dark mode goes here
+  }
+
+  import CreateGroup from "./createGroup.svelte";
+  function groupForm() {
+    newGroupForm.set(!$newGroupForm);
+    console.log($newGroupForm);
+  }
 </script>
 
+<div class="form-popup">
+  {#if $newGroupForm}
+    <div id="myform">
+      <CreateGroup />
+    </div>
+  {/if}
+</div>
+
 <div class="center">
-  {name}
+  {$user.name}
 
   <div class="dropdown" data-dropdown="">
     <a class="dropdown-button" data-dropdown-button="" href="#">
-      <i class="fa fa-user-circle fa-2x"></i>
-    </a>
-
+      <span
+        ><img class="userPic" src={$user.picture} alt="Profile Picture" />
+      </span>Profile</a
+    >
     <ul class="dropdown-list" data-dropdown-list="">
       <div class="arrow"></div>
       <li class="has-border close" data-dropdown-close="">
         <span class="title">Profile Menu</span>
         <a class="fa fa-close" href="#"></a>
       </li>
-      <li class="title has-border">Welcome {name}!</li>
+      <li class="title has-border">Welcome {$user.name}!</li>
       <!-- <li class="has-border">
       <a href="#">Public Profile</a>
     </li> -->
@@ -135,7 +148,7 @@
       <a href="#">Read for Free</a>
     </li> -->
       <li class="has-border">
-        <a class="list-button" href="#">Help</a>
+        <a class="list-button" on:click={groupForm}>Create new Group</a>
       </li>
       <li class="has-border">
         <a class="list-button" on:click={logout}>Sign Out</a>
@@ -150,6 +163,20 @@
     display: inline-block;
     position: initial;
   }
+  #myform {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 32em;
+    padding: 3em;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgba(179, 175, 175, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: #0056b3 2em solid;
+    border-radius: 10px;
+  }
   .center {
     align-items: center;
     justify-content: center;
@@ -160,11 +187,13 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    flex-direction: column;
   }
   .dropdown-button:hover {
     opacity: 0.8;
   }
-  .dropdown-button::after {
+
+  /* .dropdown-button::after {
     align-self: center;
     content: "";
     font-family: "FontAwesome";
@@ -173,10 +202,14 @@
     height: 50px;
     border-radius: 50%;
     background-color: #007bff;
-    background-image: url("/img/default-headshot.png");
+    background-image: url({idImg});
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
+  } */
+  .userPic {
+    border-radius: 50%;
+    box-shadow: #007bff 0 0 0 2px;
   }
 
   .dropdown-list {
@@ -261,7 +294,7 @@
     margin-top: 0.75em;
     margin-bottom: 0.75em;
     margin-left: 0.2em;
-    width: 90px;
+    width: 80%;
     height: 34px;
     background-color: seashell;
     border-radius: 34px;

@@ -5,6 +5,9 @@ export const isAuthenticated = writable(false);
 export const user = writable({});
 export const popupOpen = writable(false);
 export const error = writable();
+export const posts = writable([]);
+
+export const newGroupForm = writable(false);
 
 export const tasks = writable([]);
 

@@ -1,25 +1,15 @@
-const baseURL = import.meta.env.SERVER_URL;
+import { isAuthenticated, user, popupOpen, posts } from "./store";
 
-
-async function convertToJson(res) {
-  const data = await res.json();
-  if (res.ok) {
-    console.log("IT WORKED", res);
-    return data;
-  } else {
-    throw { name: "servicesError", message: data };
+export async function fetchPosts() {
+  try {
+    console.log("fetching posts");
+    const response = await fetch("https://facebok-2q7r.onrender.com/posts/");
+    const data = await response.json();
+    posts.set(data);
+    console.log("posts fetched");
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
   }
 }
-
-export async function loginRequest(cred) {
-  const res = await fetch(baseURL + "/login", { //
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(cred),
-  });
-  const token = await convertToJson(res);
-  return token;
-}
-
+fetchPosts();
