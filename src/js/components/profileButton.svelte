@@ -172,7 +172,7 @@
     height: 50px;
     border-radius: 50%;
     background-color: #007bff;
-    background-image: url({idImg});
+    background-image: url("{`${idImg}`}");
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
