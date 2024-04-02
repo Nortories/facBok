@@ -19,6 +19,9 @@
   }
   async function getuserdata() {
     console.log(await auth0Client.getUser());
+    let name = await auth0Client.getUser();
+    name = name.name;
+    console.log(name);
   }
 </script>
 
