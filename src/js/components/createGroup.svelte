@@ -36,6 +36,9 @@
 </script>
 
 <div>
+  <button class="close-button" on:click={() => newGroupForm.set(false)}
+    >X</button
+  >
   <form on:submit|preventDefault={createGroup}>
     <label for="groupName">Group Name:</label>
     <input type="text" id="groupName" bind:value={groupName} required />
@@ -77,5 +80,16 @@
 
   button:hover {
     background-color: #0056b3;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: #ccc;
+    border: none;
+    cursor: pointer;
   }
 </style>
