@@ -8,7 +8,7 @@
     const groupData = {
       name: groupName,
       description: groupDescription,
-      users: user || "any", // Replace 'any' with the actual user data
+      users: user.name || "any", // Replace 'any' with the actual user data
     };
 
     try {
@@ -26,6 +26,7 @@
         newGroupForm.set(false);
       } else {
         // Error creating group
+        console.log("Group failed!");
         console.error("Failed to create group");
       }
     } catch (error) {
