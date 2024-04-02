@@ -5,7 +5,7 @@
 
   let auth0Client;
   let idImg;
-  $: userPic = "url(' " + $user.picture + " ')";
+  $: userPic = "url(' " + user.picture + " ')";
 
   onMount(() => {
     idImg = document.querySelector(".dropdown-button::after"); // replace with your element selector
