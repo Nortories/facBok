@@ -105,24 +105,25 @@
     <input type="submit" class="new-post-btn" value="Create New Post" />
   </form>
   <!-- <div class="feed-overlay"></div> -->
-  <!-- {#if $isAuthenticated} -->
-  {#each $posts as post}
-    <div class="post-container">
-      <div class="post-header">
-        <h3>{post._id}</h3>
-        <p>{post.createdAt}</p>
+  {#if $isAuthenticated}
+    <!-- ↑↑↑↑↑↑ only show posts if logged in -->
+    {#each $posts as post}
+      <div class="post-container">
+        <div class="post-header">
+          <h3>{post._id}</h3>
+          <p>{post.createdAt}</p>
+        </div>
+        <div class="post-content">
+          <p>{post.content}</p>
+          <!-- ↑↑↑ I removed formatDate() from the above  line as it was broken: Josh.S April/1/2024 -->
+        </div>
       </div>
-      <div class="post-content">
-        <p>{post.content}</p>
-        <!-- ↑↑↑ I removed formatDate() from the above  line as it was broken: Josh.S April/1/2024 -->
+      <div class="post-footer" id="post-footer-button">
+        <button>Like</button>
+        <button>Comment</button>
       </div>
-    </div>
-    <div class="post-footer" id="post-footer-button">
-      <button>Like</button>
-      <button>Comment</button>
-    </div>
-  {/each}
-  <!-- {/if} -->
+    {/each}
+  {/if}
 </div>
 
 <style>
