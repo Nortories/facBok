@@ -1,11 +1,11 @@
 <script>
   import { posts, isAuthenticated } from "../store.js";
-  import { fetchPosts } from "../externalServices.mjs";
+  import { fetchPosts } from "../postRendering.mjs";
   import { onMount } from "svelte";
 
   onMount(async () => {
     if ($isAuthenticated) {
-      await fetchPosts();
+      await fetchPosts(type);
     }
   });
 
