@@ -164,7 +164,7 @@
   .dropdown-button:hover {
     opacity: 0.8;
   }
-  .dropdown-button::after {
+  /* .dropdown-button::after {
     align-self: center;
     content: "";
     font-family: "FontAwesome";
@@ -177,6 +177,9 @@
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
+  } */
+  .userPic {
+    border-radius: 50%;
   }
 
   .dropdown-list {
