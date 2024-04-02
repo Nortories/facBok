@@ -17,14 +17,14 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         setupTabs();
-        // document.querySelector(".tabs-bar .tabs-button").click();
+        document.querySelector(".tabs-bar .tabs-button").click();
         
     });
 
 </script>
 {#if $isAuthenticated}
 <div class="tabs-bar">
-    <button class="tabs-button tabs-button-active" data-for-tab="1">For You</button>
+    <button class="tabs-button" data-for-tab="1">For You</button>
     <button class="tabs-button" data-for-tab="2">Group Posts</button>
     <button class="tabs-button" data-for-tab="3">My Posts</button>
 </div>
