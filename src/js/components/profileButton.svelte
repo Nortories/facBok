@@ -102,10 +102,11 @@
 
   function logout() {
     auth.logout(auth0Client);
-    console.log("user" + user);
   }
 
-  let name = user.subscribe();
+  let name = user.subscribe((value) => {
+    return value;
+  });
 </script>
 
 <div class="center">
