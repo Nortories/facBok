@@ -100,7 +100,6 @@
 
 <div class="feed-container">
 
-  <!-- RETURN HERE -->
   {#if $isAuthenticated}
     <!-- ↑↑↑↑↑↑ only show posts if logged in -->
     
@@ -115,7 +114,7 @@
           <p>{post.content}</p>
           <!-- ↑↑↑ I removed formatDate() from the above  line as it was broken: Josh.S April/1/2024 -->
         </div>
-        <!-- END HERE -->
+      
 
       </div>
       <div class="post-footer" id="post-footer-button">
