@@ -17,8 +17,8 @@ export async function fetchPosts(type) {
         console.log("posts fetched");
         console.log(data);
     } else if (type == "mine") {
-        // const data = [];
-        // posts.set(data);
+        const data = [];
+        posts.set(data);
         console.log(`fetching my posts`);
         
     }
