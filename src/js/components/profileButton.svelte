@@ -103,12 +103,10 @@
   function logout() {
     auth.logout(auth0Client);
   }
-
-  $: name = user.name || "BillyBob";
 </script>
 
 <div class="center">
-  {name}
+  {$user.name}
 
   <div class="dropdown" data-dropdown="">
     <a class="dropdown-button" data-dropdown-button="" href="#">
@@ -121,7 +119,7 @@
         <span class="title">Profile Menu</span>
         <a class="fa fa-close" href="#"></a>
       </li>
-      <li class="title has-border">Welcome {name}!</li>
+      <li class="title has-border">Welcome {$user.name}!</li>
       <!-- <li class="has-border">
       <a href="#">Public Profile</a>
     </li> -->
