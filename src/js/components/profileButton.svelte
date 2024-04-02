@@ -102,6 +102,7 @@
 
   function logout() {
     auth.logout(auth0Client);
+    console.log("user" + user);
   }
 
   let name = user.subscribe();
