@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import auth from "../authService.mjs";
-  import { isAuthenticated, user } from "../store";
+  import { isAuthenticated, user, newGroup } from "../store";
 
   let auth0Client;
 
