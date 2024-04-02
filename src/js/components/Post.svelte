@@ -1,46 +1,146 @@
 <script>
-  export let title;
-  export let content;
-  export let author;
-  export let date;
+  import { onMount } from "svelte";
+
+  let user;
+  let error = false;
+  export let post;
+
+  onMount( async () => {
+    await getPostAuthor(post.user_id)
+  })
+
+  function formatDate(date) {
+    let month;
+    switch (date.getMonth()) {
+      case 0:
+        month = "January";
+        break;
+      case 1:
+        month = "February";
+        break;
+      case 2:
+        month = "March";
+        break;
+      case 3:
+        month = "April";
+        break;
+      case 4:
+        month = "May";
+        break;
+      case 5:
+        month = "June";
+        break;
+      case 6:
+        month = "July";
+        break;
+      case 7:
+        month = "August";
+        break;
+      case 8:
+        month = "September";
+        break;
+      case 9:
+        month = "October";
+        break;
+      case 10:
+        month = "November";
+        break;
+      case 11:
+        month = "December";
+        break;
+    }
+
+    let displayHours;
+    const twentyfourHours = date.getHours();
+
+    if (twentyfourHours == 0) {
+      displayHours = 12;
+    } else if (twentyfourHours > 12) {
+      displayHours = twentyfourHours - 12;
+    } else {
+      displayHours = twentyfourHours;
+    }
+
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    let timeSuffix;
+    if (twentyfourHours < 12) {
+      timeSuffix = "am";
+    } else {
+      timeSuffix = "pm";
+    }
+
+    return `${month} ${date.getDate()}, ${date.getFullYear()}, ${displayHours}:${minutes}${timeSuffix}`;
+  }
+
+    async function getPostAuthor(userId) {
+    try {
+      let response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`);
+      user = await response.json();
+      if (user.error) {
+        throw new Error("User not found");
+      }
+      console.log(user);
+    } catch(e) {
+      console.log(`An error occured: ${e}`);
+      error = true;
+    }
+  }
 </script>
 
-// Not yet implemented
-
-<div class="post">
-  <h2 class="title">{title}</h2>
-  <p class="content">{content}</p>
-  <p class="author">Author: {author}</p>
-  <p class="date">Date: {date}</p>
-</div>
+      <div class="post-container">
+        <div class="post-header">
+          {#if !error}
+          <h3>{user?.given_name} {user?.family_name}</h3>
+          {:else}
+          <h3>Unknown User</h3>
+          {/if}
+          <p>{formatDate(new Date(post.createdAt))}</p>
+        </div>
+        <div class="post-content">
+          <p>{post.content}</p>
+        </div>
+      </div>
 
 <style>
-  .post {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+  .post-container {
+    grid-column: span 6;
+    border: 5px solid #0056b3;
+    border-radius: 15px;
+    width: 75%;
+    padding: 1.5em;
+    margin: 1.5em 2em 0em 2em;
+    background-color: rgba(136, 132, 132, 0.5);
   }
 
-  .title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
+  .post-container:hover {
+    background-color: rgba(136, 132, 132, 0.7);
   }
 
-  .content {
-    font-size: 14px;
-    margin-bottom: 5px;
+  .post-container p {
+    margin: 0.5em 0em 0em 0em;
   }
 
-  .author {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 5px;
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
   }
 
-  .date {
-    font-size: 12px;
-    color: #888;
+  .post-content {
+    background-color: seashell;
+    border-radius: 7px;
+    padding: 1em;
+    margin-top: 0.5em;
+  }
+
+    @media (min-width: 708px) {
+    .post-container {
+      width: 90%;
+    }
   }
 </style>
