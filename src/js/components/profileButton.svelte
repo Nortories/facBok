@@ -4,10 +4,12 @@
   import { isAuthenticated, user } from "../store";
 
   let auth0Client;
-  let idImg = document.querySelector(".dropdown-button::after"); // replace with your element selector
-  idImg.style.backgroundImage = "url('/img/default-headshot.png')"; // replace with your image path
+  let idImg;
+  $: userPic = "url(' " + $user.picture + " ')";
 
   onMount(() => {
+    idImg = document.querySelector(".dropdown-button::after"); // replace with your element selector
+    idImg.style.backgroundImage = userPic; // replace with your image path
     const dropdownElements = document.querySelectorAll("[data-dropdown]");
     const dropdowns = {};
 
