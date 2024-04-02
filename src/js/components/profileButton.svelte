@@ -87,7 +87,7 @@
       }
     });
   });
-
+  
   onMount(async () => {
     // create an Auth0 client
     auth0Client = await auth.createClient();

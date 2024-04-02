@@ -1,41 +1,42 @@
-<script context="module">
+<script>
     import { isAuthenticated, user, newGroupForm } from "../store";
     import { fetchPosts } from "../postRendering.mjs";
+    import { onMount } from "svelte";
 
-    function setupTabs () {
-        document.querySelectorAll(".tabs-button").forEach(button => {
-            button.addEventListener("click", () => {
+
+    function clickHandler (e) {
+        const button = e.target;
+        fetchPosts(button.dataset.forTab)
+        setActiveTab(button);
+    }
+
+    function setActiveTab (button) {
                 const tabsBar = button.parentElement;
-                const tabNumber = button.dataset.forTab;
-                
-                fetchPosts(tabNumber);
-                console.log(tabNumber);
                 tabsBar.querySelectorAll(".tabs-button").forEach(button => {
                     button.classList.remove("tabs-button-active");
                 });
                 button.classList.add("tabs-button-active");
-            });
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        setupTabs();
-        document.querySelector(".tabs-bar .tabs-button").click();
-        
-    });
+    };
+     
+    onMount(() => {
+        fetchPosts('all');
+    })
+    
+    
 
 </script>
-<!-- {#if $isAuthenticated} giving errors - commented out for now-->
+{#if $isAuthenticated}
 <div class="tabs-bar">
-    <button class="tabs-button" data-for-tab="all">For You</button>
-    <button class="tabs-button" data-for-tab="group">Group Posts</button>
-    <button class="tabs-button" data-for-tab="mine">My Posts</button>
+    <button class="tabs-button tabs-button-active" on:click={ clickHandler } data-for-tab="all">For You</button>
+    <button class="tabs-button" on:click={  clickHandler} data-for-tab="group">Group Posts</button>
+    <button class="tabs-button" on:click={  clickHandler } data-for-tab="mine">My Posts</button>
 </div>
-<!-- {/if} -->
+{/if}
 <style>
     .tabs-bar {
         flex-shrink: 0;
         background: #cccccc;
+        /* display: none; */
     }
     .tabs-button {
         padding: 10px;
