@@ -4,12 +4,8 @@
   import { isAuthenticated, user } from "../store";
 
   let auth0Client;
-  let idImg;
-  $: userPic = "url(' " + user.picture + " ')";
 
   onMount(() => {
-    idImg = document.querySelector(".dropdown-button::after"); // replace with your element selector
-    idImg.style.backgroundImage = userPic; // replace with your image path
     const dropdownElements = document.querySelectorAll("[data-dropdown]");
     const dropdowns = {};
 
@@ -113,7 +109,9 @@
   {$user.name}
 
   <div class="dropdown" data-dropdown="">
-    <a class="dropdown-button" data-dropdown-button="" href="#"> </a>
+    <a class="dropdown-button" data-dropdown-button="" href="#">
+      <img class="userPic" src={$user.picture} alt="Profile Picture" />
+    </a>
 
     <ul class="dropdown-list" data-dropdown-list="">
       <div class="arrow"></div>
