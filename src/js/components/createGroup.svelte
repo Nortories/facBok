@@ -91,5 +91,6 @@
     color: #ccc;
     border: none;
     cursor: pointer;
+    font-weight: 800;
   }
 </style>
