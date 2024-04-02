@@ -128,12 +128,12 @@
         ><img class="userPic" src={$user.picture} alt="Profile Picture" />
       </span>Profile</a
     >
-    <li class="has-border close" data-dropdown-close="">
-      <span class="title">Profile Menu</span>
-      <a class="fa fa-close" href="#"></a>
-    </li>
     <ul class="dropdown-list" data-dropdown-list="">
       <div class="arrow"></div>
+      <li class="has-border close" data-dropdown-close="">
+        <span class="title">Profile Menu</span>
+        <a class="fa fa-close" href="#"></a>
+      </li>
       <li class="title has-border">Welcome {$user.name}!</li>
       <!-- <li class="has-border">
       <a href="#">Public Profile</a>
