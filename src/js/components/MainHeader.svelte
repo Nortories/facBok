@@ -2,7 +2,7 @@
   import { getParam } from "../utils.mjs";
   import { onMount } from "svelte";
   import ProfileButton from "./profileButton.svelte";
-  import { isAuthenticated, user, popupOpen } from "../store";
+  import { isAuthenticated, user, popupOpen, newGroupForm } from "../store";
   import auth from "../authService.mjs";
 
   let auth0Client;
@@ -31,7 +31,7 @@
   </div>
   {#if $isAuthenticated}
     <ProfileButton />
-    <!-- Debugging button ↓↓↓ used to check auth0Client.getUser() -->
+    <!-- Debugging buttonS ↓↓↓ used to check auth0Client.getUser() -->
     <!-- <button on:click={getuserdata}>Get User Data</button> -->
   {:else}
     <button on:click={login}>Login</button>

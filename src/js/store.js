@@ -6,6 +6,8 @@ export const user = writable({});
 export const popupOpen = writable(false);
 export const error = writable();
 
+export const newGroupForm = writable(false);
+
 export const tasks = writable([]);
 
 export const user_tasks = derived([tasks, user], ([$tasks, $user]) => {

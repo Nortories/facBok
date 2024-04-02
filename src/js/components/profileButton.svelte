@@ -104,10 +104,28 @@
     // Code to switch to dark mode goes here
   }
 
-  function newGroup() {
-    // Code to create a new group goes here
+  import CreateGroup from "./createGroup.svelte";
+  function groupForm() {
+    newGroupForm.set(!$newGroupForm);
+    console.log($newGroupForm);
   }
 </script>
+
+<div class="form-popup">
+  <button on:click={groupForm}>Create Group</button>
+  {#if $newGroupForm}
+    <div id="myform">
+      <CreateGroup />
+    </div>
+  {/if}
+</div>
+
+<div class="form-popup" id="myForm">
+  <button on:click={groupForm}>Create Group</button>
+  {#if $newGroupForm}
+    <CreateGroup />
+  {/if}
+</div>
 
 <div class="center">
   {$user.name}
@@ -152,6 +170,20 @@
   .dropdown {
     display: inline-block;
     position: initial;
+  }
+  #myform {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 32em;
+    padding: 3em;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgba(179, 175, 175, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: #0056b3 2em solid;
+    border-radius: 10px;
   }
   .center {
     align-items: center;
