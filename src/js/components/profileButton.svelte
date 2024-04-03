@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import auth from "../authService.mjs";
-  import { isAuthenticated, user, newGroupForm } from "../store";
+  import { isAuthenticated, user, newGroupForm, darkMode } from "../store";
 
   let auth0Client;
 
@@ -100,8 +100,10 @@
     auth.logout(auth0Client);
   }
 
-  function handleDarkModeClick() {
+  let thisfunction = function handleDarkModeClick() {
     // Code to switch to dark mode goes here
+    darkMode.update((darkMode) => !darkMode);
+    console.log(darkMode);
   }
 
   import CreateGroup from "./createGroup.svelte";

@@ -2,7 +2,7 @@
   import { getParam } from "../utils.mjs";
   import { onMount } from "svelte";
   import ProfileButton from "./profileButton.svelte";
-  import { isAuthenticated, user, popupOpen, newGroupForm } from "../store";
+  import { isAuthenticated, user, darkMode, popupOpen, newGroupForm } from "../store";
   import auth from "../authService.mjs";
 
   let auth0Client;
@@ -24,7 +24,9 @@
     console.log(name);
   }
 </script>
-
+{#if $darkMode}
+<h1>Dark Mode</h1>
+{/if}
 <div class="container">
   <div class="logo">
     <a href="/index.html"> Fac<span class="highlight">Bok</span></a>
