@@ -29,12 +29,15 @@ import { createAuth0Client } from "@auth0/auth0-spa-js";
 import { isAuthenticated, user, popupOpen } from "./store";
 
 async function createClient() {
-  let auth0Client = await createAuth0Client({
+  let client = await createAuth0Client({
     domain: "dev-i6dbs250kzmupp46.us.auth0.com",
     clientId: "RQDyWm7RX0sf4dA9TZ55VKcjPIiEM0uV",
+    authorizationParams: {
+      audience: "facebok.com"
+    }
   });
 
-  return auth0Client;
+  return client;
 }
 
 async function loginWithPopup(client, options) {

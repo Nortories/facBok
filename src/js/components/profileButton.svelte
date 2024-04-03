@@ -87,16 +87,19 @@
       }
     });
   });
-  
+
   onMount(async () => {
     // create an Auth0 client
     auth0Client = await auth.createClient();
     // check to see if we are currently authenticated
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
+    const token = await auth0Client.getTokenSilently();
+    localStorage.setItem("token", token);
   });
 
   function logout() {
+    localStorage.clear();
     auth.logout(auth0Client);
   }
 
