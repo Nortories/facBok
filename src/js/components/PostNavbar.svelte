@@ -20,9 +20,9 @@
      
     onMount(() => {
         fetchPosts('all');
-    })
-    
-    
+    });
+
+
 
 </script>
 {#if $isAuthenticated}

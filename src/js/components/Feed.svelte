@@ -3,12 +3,6 @@
   import { fetchPosts } from "../postRendering.mjs";
   import { onMount } from "svelte";
   import Post from "./Post.svelte";
-
-  onMount(async () => {
-    if ($isAuthenticated) {
-      await fetchPosts(type);
-    }
-  });
 </script>
 
 <div class="feed-container">
