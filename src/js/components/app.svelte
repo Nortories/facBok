@@ -1,6 +1,7 @@
 <script>
   import CreatePost from "./CreatePost.svelte";
   import PostNavbar from "./PostNavbar.svelte";
+  import GroupList from "./groupList.svelte";
   import Feed from "./Feed.svelte";
   import Landing from "./Landing.svelte";
   import MainFooter from "./MainFooter.svelte";
@@ -24,7 +25,20 @@
 
 <MainHeader></MainHeader>
 <CreatePost></CreatePost>
-<PostNavbar></PostNavbar>
-<Feed></Feed>
+<div id="grid">
+  <GroupList></GroupList>
+  <div>
+    <PostNavbar></PostNavbar>
+    <Feed></Feed>
+  </div>
+</div>
 <Landing></Landing>
 <MainFooter></MainFooter>
+
+<style>
+  #grid {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 20px;
+  }
+</style>

@@ -7,6 +7,7 @@
 </script>
 
 <div>
+    <h1>Suggested groups</h1>
     {#if $isAuthenticated}
         {#each $groups as group}
         <Group {group}></Group>
