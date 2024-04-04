@@ -128,7 +128,7 @@
     darkMode.set(false);
     blueTheme.set(false);
     greenTheme.update((greenTheme) => !greenTheme);
-    console.log($user.sub);
+    console.log($user.token);
   }
 
   import CreateGroup from "./createGroup.svelte";
