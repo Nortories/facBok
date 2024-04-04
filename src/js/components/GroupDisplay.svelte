@@ -5,29 +5,22 @@
     export let group;
     let status = 'closed';
     function joinOption (join) {
-        console.log('check');
-        console.log(join);
         if (status == 'closed') {
             join.style.display = "block";
             status = 'open';
-            console.log('open');
         } else {
             join.style.display = "none";
             status = 'closed';
-            console.log('closed');
         }
     };
     function clickHandler (e) {
         const button = e.target;
         const id = button.dataset.forTab;
-        console.log(button.dataset.forTab);
-        // console.log(id);
         const join = document.body.querySelector("[data-id=" + CSS.escape(id) + "]");
-        
         joinOption(join);
         fetchGroupPosts(button.dataset.forTab);
     }
-    function groupToJoin() {
+    function groupToJoin(e) {
         const button = e.target;
         joinGroup(button.dataset.forTab);
     }
@@ -49,7 +42,6 @@
         font-size: 0;
     }
     .groups-button{
-        background-color: rgba(136, 132, 132, 0.5);
         width: 100%;
         padding: 10px;
         margin-top: 20px;
