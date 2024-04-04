@@ -137,9 +137,9 @@
     margin-top: 0.5em;
   }
 
-    @media (min-width: 708px) {
+    /* @media (min-width: 708px) {
     .post-container {
-      /* width: 90%; */
+      width: 90%; 
     }
-  }
+  } */
 </style>

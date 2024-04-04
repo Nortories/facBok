@@ -11,11 +11,11 @@ import { isAuthenticated } from "../store.js";
 {/if}
 <style>
     #new-post {
-    border: 3px solid #0056b3;
-    border-radius: 15px;
-    margin-top: 1.5em;
-    padding: 1.5em;
-    background-color: rgba(136, 132, 132, 0.5);
+      border: 3px solid #0056b3;
+      border-radius: 15px;
+      margin-top: 1.5em;
+      padding: 1.5em;
+      background-color: rgba(136, 132, 132, 0.5);
   }
 
   #new-post label {

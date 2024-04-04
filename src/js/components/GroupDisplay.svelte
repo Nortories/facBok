@@ -3,28 +3,28 @@
     import { fetchGroupPosts, joinGroup } from "../groupJoin.mjs";
     import { onMount } from "svelte";
     export let group;
-    // let status = 'closed';
-    // function joinOption (join) {
-    //     console.log('check');
-    //     console.log(join);
-    //     if (status == 'closed') {
-    //         join.style.display = "block";
-    //         status = 'open';
-    //         console.log('open');
-    //     } else {
-    //         join.style.display = "none";
-    //         status = 'closed';
-    //         console.log('closed');
-    //     }
-    // };
+    let status = 'closed';
+    function joinOption (join) {
+        console.log('check');
+        console.log(join);
+        if (status == 'closed') {
+            join.style.display = "block";
+            status = 'open';
+            console.log('open');
+        } else {
+            join.style.display = "none";
+            status = 'closed';
+            console.log('closed');
+        }
+    };
     function clickHandler (e) {
         const button = e.target;
-        // const id = button.dataset.forTab;
-        // console.log(button.dataset.forTab);
+        const id = button.dataset.forTab;
+        console.log(button.dataset.forTab);
         // console.log(id);
-        // const join = document.body.querySelector("[data-id=" + CSS.escape(id) + "]");
+        const join = document.body.querySelector("[data-id=" + CSS.escape(id) + "]");
         
-        // joinOption(join);
+        joinOption(join);
         fetchGroupPosts(button.dataset.forTab);
     }
     function groupToJoin() {
@@ -39,8 +39,8 @@
 </script>
 {#if $isAuthenticated}
 <div class="group-set">
-    <button class="groups-button" on:click={ clickHandler } data-for-tab={ group?.id }>{group?.name}</button>
-    <button class="join-button" on:click={ groupToJoin } data-id={ group?.id }>Join</button>
+    <button class="groups-button" on:click={ clickHandler } data-for-tab={ group?._id }>{group?.name}</button>
+    <button class="join-button" on:click={ groupToJoin } data-id={ group?._id }>Join Group</button>
 </div>
 
 {/if}
@@ -49,10 +49,14 @@
         font-size: 0;
     }
     .groups-button{
+        background-color: rgba(136, 132, 132, 0.5);
         width: 100%;
         margin-top: 20px;
     }
     .join-button {
+        color: white;
+        background-color: #007bff;
+        display: none;
         width: 100%;
     }
 </style>
