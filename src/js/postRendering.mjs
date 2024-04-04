@@ -35,8 +35,8 @@ export async function fetchPosts(type, user = null) {
         }
       } else {
         console.log("No groups found");
+        posts.set(data);
       }
-      posts.set(data);
       console.log("fetching group posts");
       console.log(posts);
     } else if (type == "mine") {
