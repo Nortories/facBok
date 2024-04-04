@@ -19,5 +19,6 @@
         border: 3px solid #0056b3;
         border-radius: 15px;
         padding: 20px;
+        margin-right: 20px;
     }
 </style>

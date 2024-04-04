@@ -1,4 +1,4 @@
-import { groups, posts } from './store';
+import { groups, posts, user } from './store';
 
 export async function fetchGroups() {
     try {
@@ -14,7 +14,7 @@ export async function fetchGroups() {
 
 export async function fetchGroupPosts(group) {
     try {
-        const response = await fetch("https://facebok-2q7r.onrender.com/posts/3");
+        const response = await fetch("https://facebok-2q7r.onrender.com/posts/" + group);
         const data = await response.json();
         posts.set(data);
         console.log("fetching group posts");
@@ -25,7 +25,17 @@ export async function fetchGroupPosts(group) {
 }
 export async function joinGroup(group) {
     try {
-        const response = await fetch("https://facebok-2q7r.onrender.com/posts/3");
+        const token = localStorage.getItem('token');
+        const options = {
+            method: 'PUT',
+            headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(group)
+        }
+        const response = await fetch("https://facebok-2q7r.onrender.com/users/addGroup/" + user.sub, options);
         const data = await response.json();
         posts.set(data);
         console.log("fetching group posts");
