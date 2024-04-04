@@ -108,11 +108,10 @@
 <style>
   .post-container {
     grid-column: span 6;
-    border: 5px solid #0056b3;
+    border: 3px solid #0056b3;
     border-radius: 15px;
-    width: 75%;
     padding: 1.5em;
-    margin: 1.5em 2em 0em 2em;
+    margin-bottom: 2em 0;
     background-color: rgba(136, 132, 132, 0.5);
   }
 
@@ -140,7 +139,7 @@
 
     @media (min-width: 708px) {
     .post-container {
-      width: 90%;
+      /* width: 90%; */
     }
   }
 </style>
