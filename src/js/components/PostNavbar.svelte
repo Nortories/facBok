@@ -11,11 +11,11 @@
     }
 
     function setActiveTab (button) {
-                const tabsBar = button.parentElement;
-                tabsBar.querySelectorAll(".tabs-button").forEach(button => {
-                    button.classList.remove("tabs-button-active");
-                });
-                button.classList.add("tabs-button-active");
+        const tabsBar = button.parentElement;
+        tabsBar.querySelectorAll(".tabs-button").forEach(button => {
+            button.classList.remove("tabs-button-active");
+        });
+        button.classList.add("tabs-button-active");
     };
      
     onMount(() => {

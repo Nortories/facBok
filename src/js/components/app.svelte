@@ -38,7 +38,7 @@
 <style>
   #grid {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 2fr 5fr;
     gap: 10px;
   }
 </style>
