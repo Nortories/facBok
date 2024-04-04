@@ -103,7 +103,7 @@
     auth.logout(auth0Client);
   }
 
-  let thisfunction = function handleDarkModeClick() {
+  function handleDarkModeClick() {
     // Code to switch to dark mode goes here
     darkMode.update((darkMode) => !darkMode);
     console.log(darkMode);
