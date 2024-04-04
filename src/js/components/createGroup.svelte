@@ -1,5 +1,6 @@
 <script>
   import { user, newGroupForm } from "../store";
+  import { fetchGroups } from "../groupJoin.mjs";
 
   let groupName = "";
   let groupDescription = "";
@@ -25,6 +26,7 @@
         // Group created successfully
         console.log("Group created!");
         newGroupForm.set(false);
+        fetchGroups();
       } else {
         // Error creating group
         console.log("Group failed!");
