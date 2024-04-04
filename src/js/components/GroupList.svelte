@@ -5,15 +5,14 @@
 
     fetchGroups();
 </script>
-
-<div id="groups">
-    {#if $isAuthenticated}
+{#if $isAuthenticated}
+    <div id="groups">
         <h1>Suggested groups</h1>
         {#each $groups as group}
         <Group {group}></Group>
         {/each}
-    {/if}
-</div>
+    </div>
+{/if}
 <style>
     #groups {
         background-color: rgba(136, 132, 132, 0.5);
