@@ -60,6 +60,7 @@
         background-color: #007bff;
         display: none;
         padding: 10px;
+        border-radius: 5px;
         width: 100%;
     }
 </style>
