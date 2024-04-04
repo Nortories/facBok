@@ -103,8 +103,40 @@
     user.set(await auth0Client.getUser());
     const token = await auth0Client.getTokenSilently();
     localStorage.setItem("token", token);
+
+    const email = (await auth0Client.getUser()).email;
+    const sub = (await auth0Client.getUser()).sub;
+
+    sendUserToServer($user, email, sub);
   });
 
+  async function sendUserToServer(user, email, sub) {
+    console.log("user name " + user.name);
+    console.log("user email " + email);
+    console.log("user sub " + sub);
+    const response = await fetch("https://facebok-2q7r.onrender.com/users", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        given_name: user.name,
+        family_name: user.name,
+        name: user.name,
+        day_joined: "2021-09-01",
+        groups: "",
+        sub: sub,
+      }),
+    });
+
+    if (response.ok) {
+      console.log("User created!");
+    } else {
+      console.error("Failed to create user");
+    }
+  }
   function logout() {
     localStorage.clear();
     auth.logout(auth0Client);
