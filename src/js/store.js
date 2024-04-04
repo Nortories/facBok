@@ -11,7 +11,6 @@ export const groups = writable([]);
 export const newGroupForm = writable(false);
 
 export const tasks = writable([]);
-
 export const user_tasks = derived([tasks, user], ([$tasks, $user]) => {
   let logged_in_user_tasks = [];
 
@@ -21,3 +20,6 @@ export const user_tasks = derived([tasks, user], ([$tasks, $user]) => {
 
   return logged_in_user_tasks;
 });
+export const darkMode = writable(false);
+export const blueTheme = writable(false);
+export const greenTheme = writable(false);

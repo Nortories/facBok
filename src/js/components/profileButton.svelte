@@ -1,7 +1,14 @@
 <script>
   import { onMount } from "svelte";
   import auth from "../authService.mjs";
-  import { isAuthenticated, user, newGroupForm } from "../store";
+  import {
+    isAuthenticated,
+    user,
+    newGroupForm,
+    darkMode,
+    blueTheme,
+    greenTheme,
+  } from "../store";
 
   let auth0Client;
 
@@ -105,6 +112,23 @@
 
   function handleDarkModeClick() {
     // Code to switch to dark mode goes here
+    blueTheme.set(false);
+    greenTheme.set(false);
+    darkMode.update((darkMode) => !darkMode);
+  }
+
+  function handleBlueModeClick() {
+    // Code to switch to blue mode goes here
+    darkMode.set(false);
+    greenTheme.set(false);
+    blueTheme.update((blueTheme) => !blueTheme);
+  }
+  function handleGreenModeClick() {
+    // Code to switch to blue mode goes here
+    darkMode.set(false);
+    blueTheme.set(false);
+    greenTheme.update((greenTheme) => !greenTheme);
+    console.log($user.token);
   }
 
   import CreateGroup from "./createGroup.svelte";
@@ -142,8 +166,16 @@
       <a href="#">Public Profile</a>
     </li> -->
       <li class="has-border">
-        <a class="list-button" on:click={handleDarkModeClick}>Darkmode</a>
+        <a class="list-button" on:click={handleDarkModeClick}>Dark Mode</a>
       </li>
+
+      <li class="has-border">
+        <a class="list-button" on:click={handleBlueModeClick}>Blue Theme</a>
+      </li>
+      <li class="has-border">
+        <a class="list-button" on:click={handleGreenModeClick}>Green Theme</a>
+      </li>
+
       <!-- <li class="has-border">
       <a href="#">Document Uploads</a>
     </li> -->
