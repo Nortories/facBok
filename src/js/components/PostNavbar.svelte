@@ -6,7 +6,7 @@
 
     function clickHandler (e) {
         const button = e.target;
-        fetchPosts(button.dataset.forTab)
+        fetchPosts(button.dataset.forTab, $user.sub)
         setActiveTab(button);
     }
 

@@ -7,14 +7,24 @@
   <title>facBok | Home</title>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="js/main.js" type="module"></script>
+  <style>
+    main {
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+      gap: 20px;
+    }
+  </style>
 </head>
 
 <body>
   <header class="divider" id="main-header"></header>
   <main>
-    <div id="new-post"></div>
-    <div class="tabs" id="post-navbar"></div>
-    <div id="main-content"></div>
+    <div id="groups"></div>
+    <div>
+      <div id="new-post"></div>
+      <div class="tabs" id="post-navbar"></div>
+      <div id="main-content"></div>
+    </div>
   </main>
   <footer id="main-footer"></footer>
 </body>
