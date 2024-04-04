@@ -5,9 +5,9 @@
   let error = false;
   export let post;
 
-  onMount( async () => {
-    await getPostAuthor(post.user_id)
-  })
+  onMount(async () => {
+    // await getPostAuthor(post.user_id)
+  });
 
   function formatDate(date) {
     let month;
@@ -76,34 +76,34 @@
     return `${month} ${date.getDate()}, ${date.getFullYear()}, ${displayHours}:${minutes}${timeSuffix}`;
   }
 
-    async function getPostAuthor(userId) {
-    try {
-      let response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`);
-      user = await response.json();
-      if (user.error) {
-        throw new Error("User not found");
-      }
-      console.log(user);
-    } catch(e) {
-      console.log(`An error occured: ${e}`);
-      error = true;
-    }
-  }
+  //   async function getPostAuthor(userId) {
+  //   try {
+  //     let response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`);
+  //     user = await response.json();
+  //     if (user.error) {
+  //       throw new Error("User not found");
+  //     }
+  //     console.log(user);
+  //   } catch(e) {
+  //     console.log(`An error occured: ${e}`);
+  //     error = true;
+  //   }
+  // }
 </script>
 
-      <div class="post-container">
-        <div class="post-header">
-          {#if !error}
-          <h3>{user?.given_name} {user?.family_name}</h3>
-          {:else}
-          <h3>Unknown User</h3>
-          {/if}
-          <p>{formatDate(new Date(post.createdAt))}</p>
-        </div>
-        <div class="post-content">
-          <p>{post.content}</p>
-        </div>
-      </div>
+<div class="post-container">
+  <div class="post-header">
+    {#if !error}
+      <h3>{post?.user_id}</h3>
+    {:else}
+      <h3>Unknown User</h3>
+    {/if}
+    <p>{formatDate(new Date(post.createdAt))}</p>
+  </div>
+  <div class="post-content">
+    <p>{post.content}</p>
+  </div>
+</div>
 
 <style>
   .post-container {
@@ -137,7 +137,7 @@
     margin-top: 0.5em;
   }
 
-    /* @media (min-width: 708px) {
+  /* @media (min-width: 708px) {
     .post-container {
       width: 90%; 
     }
