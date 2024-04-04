@@ -1,6 +1,6 @@
 import { isAuthenticated, user, popupOpen, posts } from "./store";
 
-export async function fetchPosts(type) {
+export async function fetchPosts(type, user = null) {
   try {
     if (type == "all") {
         console.log(`fetching __ posts`);
@@ -24,7 +24,9 @@ export async function fetchPosts(type) {
             Authorization: `Bearer ${token}`
           }
         }
-        const response = await fetch("https://facebok-2q7r.onrender.com/posts/post/abc123", options);
+        console.log(user)
+
+        const response = await fetch(`https://facebok-2q7r.onrender.com/posts/post/${user}`, options);
         const data = await response.json();
         posts.set(data);
         console.log("posts fetched");
