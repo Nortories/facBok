@@ -20,6 +20,7 @@ import { isAuthenticated } from "../store.js";
 
   #new-post label {
     display: block;
+    font-size: 2em;
   }
 
   #new-post-content {

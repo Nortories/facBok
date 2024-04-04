@@ -26,35 +26,33 @@
 
 </script>
 {#if $isAuthenticated}
-<div class="tabs-bar">
+<div id="tabs-bar">
     <button class="tabs-button tabs-button-active" on:click={ clickHandler } data-for-tab="all">For You</button>
     <button class="tabs-button" on:click={  clickHandler} data-for-tab="group">Group Posts</button>
     <button class="tabs-button" on:click={  clickHandler } data-for-tab="mine">My Posts</button>
 </div>
 {/if}
 <style>
-    .tabs-bar {
-        flex-shrink: 0;
-        background: #cccccc;
-        /* display: none; */
+    #tabs-bar {
+        display: flex;
+        margin-top: 40px;
+        border-radius: 15px;
     }
     .tabs-button {
         padding: 10px;
-        background: #eeeeee;
+        background: rgba(136, 132, 132, 0.5);
         border: none;
         outline: none;
         cursor: pointer;
+        flex: 1;
+        border-radius: 15px;
     }
-    .tabs-button:active {
+    .tabs-button-active {
         background: #dddddd;
+        font-weight: bold;
+        border: 3px solid #0056b3;
     }
     .tabs-button:not(:last-of-type) {
-        border-right: 1px solid #cccccc;
+        margin-right: 20px;
     }
-    :is(.tabs-button-active) {
-        font-weight: bold;
-        border-bottom: 2px solid #007bff;
-        background: #dddddd;
-    }
-
 </style>

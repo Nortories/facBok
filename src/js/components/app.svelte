@@ -25,12 +25,12 @@
 
 <MainHeader></MainHeader>
 <CreatePost></CreatePost>
+
 <div id="grid">
+  <div></div>
+  <PostNavbar></PostNavbar>
   <GroupList></GroupList>
-  <div>
-    <PostNavbar></PostNavbar>
-    <Feed></Feed>
-  </div>
+  <Feed></Feed>
 </div>
 <Landing></Landing>
 <MainFooter></MainFooter>
@@ -39,6 +39,6 @@
   #grid {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    gap: 20px;
+    gap: 10px;
   }
 </style>
