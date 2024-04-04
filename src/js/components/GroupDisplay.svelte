@@ -51,12 +51,15 @@
     .groups-button{
         background-color: rgba(136, 132, 132, 0.5);
         width: 100%;
+        padding: 10px;
         margin-top: 20px;
+        border-radius: 5px;
     }
     .join-button {
         color: white;
         background-color: #007bff;
         display: none;
+        padding: 10px;
         width: 100%;
     }
 </style>
