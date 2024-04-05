@@ -3,7 +3,10 @@
   import { fetchPosts } from "../postRendering.mjs";
   import { onMount } from "svelte";
   import Post from "./Post.svelte";
+  import Groups from "./Groups.svelte"
 </script>
+
+
 
 <div class="feed-container">
 
@@ -19,6 +22,17 @@
       </div>
     {/each}
   {/if}
+</div>
+<div id="mygrid">
+
+  <Groups/>
+  <!-- <button on:click={getAllItems} id="all" type="button">Get all</button>
+
+
+ 
+
+  <button on:click={getSingleItem} id="sigle" type="button">Get single</button> -->
+  <button on:click={updateItem} id="join" type="button">Join</button>
 </div>
 
 <style>
