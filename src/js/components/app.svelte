@@ -1,7 +1,7 @@
 <script>
   import CreatePost from "./CreatePost.svelte";
   import PostNavbar from "./PostNavbar.svelte";
-  import GroupList from "./groupList.svelte";
+  import GroupList from "./GroupList.svelte";
   import Feed from "./Feed.svelte";
   import Landing from "./Landing.svelte";
   import MainFooter from "./MainFooter.svelte";
