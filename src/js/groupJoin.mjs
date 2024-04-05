@@ -35,7 +35,7 @@ export async function joinGroup(group) {
             },
             body: JSON.stringify(group)
         }
-        const response = await fetch("https://facebok-2q7r.onrender.com/users/addGroup/" + user.sub, options);
+        const response = await fetch(`https://facebok-2q7r.onrender.com/users/addGroup/${user.sub}`, options);
         const data = await response.json();
         posts.set(data);
         console.log("fetching group posts");

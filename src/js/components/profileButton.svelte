@@ -125,8 +125,8 @@
         given_name: user.name,
         family_name: user.name,
         name: user.name,
-        day_joined: "2021-09-01",
-        groups: "",
+        day_joined: Date.now(),
+        groups: null,
         sub: sub,
       }),
     });
