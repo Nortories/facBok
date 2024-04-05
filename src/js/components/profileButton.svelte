@@ -119,7 +119,7 @@
         family_name: user.family_name,
         name: user.name,
         day_joined: Date.now(),
-        groups: null,
+        groups: [],
         sub: user.sub,
       }),
     });

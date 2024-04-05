@@ -12,7 +12,28 @@
 
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
+    $user.backend = await getMygroup
   });
+  async function getMygroup() {
+    try {
+        const token = localStorage.getItem('token');
+        const userId = $user.sub
+        const options = {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            },
+            
+        }
+        const response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`, options);
+        return response.json
+        console.log(response);
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+    }
+}
+
 
   function login() {
     auth.loginWithPopup(auth0Client);
