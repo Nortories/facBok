@@ -22,7 +22,7 @@
     }
     function groupToJoin(e) {
         const button = e.target;
-        joinGroup(button.dataset.forTab);
+        joinGroup(button.dataset.id, $user.sub);
     }
      
  

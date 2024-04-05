@@ -103,17 +103,10 @@
     user.set(await auth0Client.getUser());
     const token = await auth0Client.getTokenSilently();
     localStorage.setItem("token", token);
-
-    const email = (await auth0Client.getUser()).email;
-    const sub = (await auth0Client.getUser()).sub;
-
-    sendUserToServer($user, email, sub);
+    sendUserToServer($user);
   });
 
-  async function sendUserToServer(user, email, sub) {
-    console.log("user name " + user.name);
-    console.log("user email " + email);
-    console.log("user sub " + sub);
+  async function sendUserToServer(user) {
     const response = await fetch("https://facebok-2q7r.onrender.com/users", {
       method: "POST",
       headers: {
@@ -121,13 +114,13 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        given_name: user.name,
-        family_name: user.name,
+        email: user.email,
+        given_name: user.given_name,
+        family_name: user.family_name,
         name: user.name,
         day_joined: Date.now(),
         groups: null,
-        sub: sub,
+        sub: user.sub,
       }),
     });
 
