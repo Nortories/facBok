@@ -2,78 +2,58 @@
   import { isAuthenticated, user } from "../store.js";
   import { fetchGroups } from "../groupJoin.mjs";
 
-  
-
   import { onMount } from 'svelte';
-  import { writable } from 'svelte/store'; // Importing writable store for managing selected group
+  import { writable } from 'svelte/store';
 
   let groups = []; // Array to hold the list of groups
-  let selectedGroup = writable(null); // Store to hold the selected group
+  //export let selectedGroup = writable(null); // Store to hold the selected group // When my store is used at multiple files
+  let selectedGroup = "";
+  let errorMessage = "";
 
   let newData = {
-    "user_id": $user.sub,
-    "content": null,
-    "likes": null,
-    "comments": null
+    user_id: $user.sub,
+    content: "",  // Initialize content as empty string
   };
 
-  // Fetch the list of groups from the backend
-  // async function fetchGroups() {
-  //   try {
-  //     const response = await fetch('https://facebok-2q7r.onrender.com/group/');
-  //     groups = await response.json();
-  //   } catch (error) {
-  //     console.error('Error fetching groups:', error);
-  //   }
-  // }
+  // Function to fetch group data from the backend
+  async function fetchGroupsData() {
+    try {
+      const response = await fetch('https://facebok-2q7r.onrender.com/groups/');
+      groups = await response.json();
+    } catch (error) {
+      console.error('Error fetching groups:', error);
+    }
+  }
 
-  // Call fetchGroups when the component mounts to populate the dropdown
-//    async function getMygroup() {
-//     try {
-//         const token = localStorage.getItem('token');
-//         const userId = $user.sub
-//         const options = {
-//             method: 'GET',
-//             headers: {
-//             'Content-Type': 'application/json',
-//             Authorization: `Bearer ${token}`,
-//             },
-            
-//         }
-//         const response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`, options);
-//         console.log(response);
-//     } catch (error) {
-//         console.error("Error fetching posts:", error);
-//     }
-// }
-
-// function handler() {
-//         const button = e.target;
-//         handler(button.dataset.id, $user.sub);
-//     }
-
-//   // onMount(fetchGroups);
-//   onMount(async ()=>{
-//     await getMygroup()
-//   });
+  // Call fetchGroupsData when the component mounts
+  onMount(fetchGroupsData);
 
   // Function to handle the POST request
   async function postData() {
     try {
-      // Get the selected group ID from the store
-      const groupId = $selectedGroup;
+      // Check if a group is selected
+      if (!selectedGroup) {
+        errorMessage = "Please select a group before posting";
+        console.error("This is your error")
+        return;
+      }
+      
+      newData.groupId = selectedGroup;
+      const token = localStorage.getItem('token');
 
       const response = await fetch('https://facebok-2q7r.onrender.com/posts/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          groupId: groupId,
-          data: newData,
-         
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
 
-        })
+          // Add authorization headers if required by your backend
+        },
+        body: JSON.stringify(
+          // groupId,
+          // data: newData,
+          newData
+        )
       });
 
       if (!response.ok) {
@@ -81,55 +61,33 @@
       }
 
       console.log('Data posted successfully');
-      // Optionally reset form fields
-      newData = {
-        name: '',
-        email: ''
-      };
+      // Reset post content after successful submission
+      newData.content = "";
     } catch (error) {
       console.error('Error:', error);
     }
   }
-
-
-
 </script>
 
-
 {#if $isAuthenticated}
-    <!-- ↑↑↑↑↑↑ only show posts if logged in -->
-    {JSON.stringify($user)}
-    <form on:submit|preventDefault={postData} id="new-post" action="" method="post">
-        <label for="new-post-content"><b>So what's up?</b></label>
-        <textarea name="new-post-content" id="newpostcontent" bind:value={newData.content} required></textarea>
-        <button type="submit" class="new-post-btn" value="Create New Post">Creat New Post</button>
-        <h1>Select the Group</h1>
-  <select bind:value={$selectedGroup}>
-    {#each groups as group}
-      <option value={group.id}>{group.name}</option>
-    {/each}
-</select>
-    </form>
+  {JSON.stringify($user)}
+  <form on:submit|preventDefault={postData} id="new-post" action="" method="post">
+    <label for="new-post-content"><b>So what's up?</b></label>
+    <textarea name="new-post-content" id="newpostcontent" bind:value={newData.content} required></textarea>
+    <button type="submit" class="new-post-btn" value="Create New Post">Create New Post</button>
+    <h1>Select the Group</h1>
+    <select bind:value={selectedGroup}>
+      {#each groups as group}
+        <option value={group._id}>{group.name}</option>
+      {/each}
+    </select>
+    <p style="color: red;">{errorMessage}</p>
+  </form>
 {/if}
 
 
 
-<!-- Input fields for name and email -->
-<!-- <label>
-  Name:
-  <input type="text" bind:value="{newData.name}" />
-</label>
 
-<label>
-  Email:
-  <input type="email" bind:value="{newData.email}" />
-</label> -->
-
-<!-- Dropdown menu to select the group -->
-
-
-<!-- Submit button to trigger the postData function -->
-<!-- <button on:click={postData}>Submit</button> -->
 <style>
     #new-post {
       border: 3px solid #0056b3;
@@ -138,6 +96,10 @@
       padding: 1.5em;
       background-color: rgba(136, 132, 132, 0.5);
   }
+
+  select:invalid + p {
+  color: red;
+}
 
   #new-post label {
     display: block;
