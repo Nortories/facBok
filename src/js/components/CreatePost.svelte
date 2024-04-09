@@ -1,43 +1,37 @@
 <script>
   import { isAuthenticated, user } from "../store.js";
-  import { fetchGroups } from "../groupJoin.mjs";
-
   import { onMount } from 'svelte';
-  import { writable } from 'svelte/store';
 
-  let groups = []; // Array to hold the list of groups
-  //export let selectedGroup = writable(null); // Store to hold the selected group // When my store is used at multiple files
+  let groups = [];
   let selectedGroup = "";
   let errorMessage = "";
 
   let newData = {
     user_id: $user.sub,
-    content: "",  // Initialize content as empty string
+    content: "",  
   };
 
-  // Function to fetch group data from the backend
   async function fetchGroupsData() {
     try {
       const response = await fetch('https://facebok-2q7r.onrender.com/groups/');
+      if (!response.ok) {
+        throw new Error('Failed to fetch groups');
+      }
       groups = await response.json();
     } catch (error) {
       console.error('Error fetching groups:', error);
     }
   }
 
-  // Call fetchGroupsData when the component mounts
   onMount(fetchGroupsData);
 
-  // Function to handle the POST request
   async function postData() {
     try {
-      // Check if a group is selected
       if (!selectedGroup) {
         errorMessage = "Please select a group before posting";
-        console.error("This is your error")
         return;
       }
-      
+
       newData.groupId = selectedGroup;
       const token = localStorage.getItem('token');
 
@@ -45,26 +39,21 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-
-          // Add authorization headers if required by your backend
+          'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(
-          // groupId,
-          // data: newData,
-          newData
-        )
+        body: JSON.stringify(newData)
       });
 
+      const responseData = await response.json();
+      console.log(postData)
       if (!response.ok) {
-        throw new Error('Failed to post data');
+        throw new Error(`Failed to post data: ${responseData.error || response.statusText}`);
       }
 
       console.log('Data posted successfully');
-      // Reset post content after successful submission
       newData.content = "";
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message);
     }
   }
 </script>
@@ -84,6 +73,7 @@
     <p style="color: red;">{errorMessage}</p>
   </form>
 {/if}
+
 
 
 

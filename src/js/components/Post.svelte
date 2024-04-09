@@ -95,10 +95,11 @@
         const url = `https://facebok-2q7r.onrender.com/user/${userId}`
 
         const response = await fetch(url);
-
+        console.log(user)
         if (!response.ok) {
           throw new Error (`Failed to loading`)
         }
+      
         const userDetails = await response.json();
         return userDetails
       }
