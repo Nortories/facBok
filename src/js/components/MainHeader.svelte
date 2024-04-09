@@ -13,6 +13,8 @@
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
     $user.backend = await getMygroup
+    getMygroup()
+    console.log("Hello World");
   });
   async function getMygroup() {
     try {
@@ -27,8 +29,8 @@
             
         }
         const response = await fetch(`https://facebok-2q7r.onrender.com/users/${userId}`, options);
-        return response.json
         console.log(response);
+        return response.json
     } catch (error) {
         console.error("Error fetching posts:", error);
     }

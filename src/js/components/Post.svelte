@@ -1,7 +1,8 @@
 <script>
   import { onMount } from "svelte";
+  import {user} from "../store.js";
 
-  let user;
+  let users;
   let error = false;
   export let post;
 
@@ -110,7 +111,7 @@
     let userId = $user.sub;
 
     onMount(() => {
-    user = getUserInfo(userId)
+    users = getUserInfo(userId)
     
   });
 
