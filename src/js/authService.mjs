@@ -30,10 +30,10 @@ import { isAuthenticated, user, popupOpen } from "./store";
 
 async function createClient() {
   let client = await createAuth0Client({
-    domain: "dev-i6dbs250kzmupp46.us.auth0.com",
-    clientId: "RQDyWm7RX0sf4dA9TZ55VKcjPIiEM0uV",
+    domain: import.meta.env.VITE_AUTH0_DOMAIN,
+    clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
     authorizationParams: {
-      audience: "facebok.com"
+      audience: import.meta.env.VITE_AUTH0_AUDIENCE
     }
   });
 
