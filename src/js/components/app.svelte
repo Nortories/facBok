@@ -10,7 +10,7 @@
   import Light from "./Light.svelte";
   import BlueTheme from "./BlueTheme.svelte";
   import GreenTheme from "./GreenTheme.svelte";
-  import { darkMode, blueTheme, greenTheme, isAuthenticated, user } from "../store";
+  import { darkMode, blueTheme, greenTheme } from "../store";
 
 
 
@@ -22,7 +22,7 @@
   <BlueTheme></BlueTheme>
 {:else if $greenTheme}
   <GreenTheme></GreenTheme>
-{:else} 
+{:else}
   <Light></Light>
 {/if}
 

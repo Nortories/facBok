@@ -1,8 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import {user} from "../store.js";
 
-  let users;
+  let user;
   let error = false;
   export let post;
 
@@ -90,33 +89,6 @@
   //     error = true;
   //   }
   // }
-  async function getUserInfo(userId) {
-      try {
-        const url = `https://facebok-2q7r.onrender.com/user/${userId}`
-
-        const response = await fetch(url);
-        console.log(user)
-        if (!response.ok) {
-          throw new Error (`Failed to loading`)
-        }
-      
-        const userDetails = await response.json();
-        return userDetails
-      }
-      catch (error) {
-        console.error("There is error")
-        return null
-      }
-    }
-
-    let userId = $user.sub;
-
-    onMount(() => {
-    users = getUserInfo(userId)
-    
-  });
-
- 
 </script>
 
 <div class="post-container">
